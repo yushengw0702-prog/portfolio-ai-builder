@@ -148,6 +148,7 @@
   .award-copy{min-width:0;line-height:1.35}
   .award-copy b{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:600}
   .award-copy p{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+  .award-note{margin-top:10px;font-size:12px;color:var(--faint)}
 
   /* ---------- PROJECT ---------- */
   .p-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -585,6 +586,7 @@ function buildCover(){
 
 const AWARDS = [
   {year:"2023",brand:"Apple",logo:"apple.png",title:"移动应用创新赛 总决赛二等奖"},
+  {year:"2022",brand:"Apple",logo:"apple.png",title:"移动应用创新赛 总决赛三等奖"},
   {year:"2022",brand:"百度",logo:"baidu.png",title:"人工智能创意赛 总决赛二等奖"},
   {year:"2022",brand:"腾讯",logo:"tencent.png",title:"高校游戏创意制作大赛 总决赛优胜奖"},
   {year:"2022",brand:"歌尔",logo:"goertek.png",title:"「歌尔杯」高校 AR/VR 挑战赛 总决赛二等奖"},
@@ -593,10 +595,10 @@ const AWARDS = [
 
 function buildAbout(){
   const exp = [
-    {l:"2020 - 2024",t:"山东大学 · 交互设计 · 本科",b:"围绕用户需求、交互流程与原型设计建立产品基础。"},
-    {l:"2023.9 - 2024.1",t:"百度巧舱商家智能体 · AI 产品助理 · 实习",b:"围绕商家智能体的用户场景、需求拆解与 AI 功能设计，关注能力与实际使用任务的匹配。"},
+    {l:"2025.10 - 至今",t:"深圳点猫科技（编程猫）创新业务部 · AI 产品经理",b:"面向儿童创造场景，参与 AI Agent 与智能硬件结合的功能定义、原型设计与体验验证。"},
     {l:"2024.8 - 2025.8",t:"香港科技大学（广州）· 人机交互科研助理 · 实习",b:"参与人机交互相关研究，关注用户、场景与交互体验之间的关系。"},
-    {l:"2025.10 - 至今",t:"深圳点猫科技（编程猫）创新业务部 · AI 产品经理",b:"面向儿童创造场景，参与 AI Agent 与智能硬件结合的功能定义、原型设计与体验验证。"}
+    {l:"2023.9 - 2024.1",t:"百度巧舱商家智能体 · AI 产品助理 · 实习",b:"围绕商家智能体的用户场景、需求拆解与 AI 功能设计，关注能力与实际使用任务的匹配。"},
+    {l:"2020 - 2024",t:"山东大学 · 交互设计 · 本科",b:"围绕用户需求、交互流程与原型设计建立产品基础。"}
   ].map(e=>`<article class="tl-card"><span>${e.l}</span><h3>${e.t}</h3><p>${e.b}</p></article>`).join("");
   const caps = ["需求调研","AI 场景定义","测试集设计","AI 策略设计","交互设计","用户教育","功能效果验收","Badcase 分析","数据分析","智能硬件","数据与体验迭代"]
     .map((c,i)=>`<span class="chip${i<3?' hot':''}">${c}</span>`).join("");
@@ -615,6 +617,7 @@ function buildAbout(){
     <div class="about-awards">
       <h3>产品与技术荣誉</h3>
       <div class="award-list">${awards}</div>
+      <p class="award-note">……更多荣誉暂未列出，以上仅展示部分奖项。</p>
     </div>
   </div>`;
 }
