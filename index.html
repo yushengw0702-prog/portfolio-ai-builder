@@ -145,6 +145,7 @@
   .award-logo{width:86px;height:42px;display:flex;align-items:center;justify-content:center}
   .award-logo img{display:block;max-width:100%;max-height:100%;object-fit:contain}
   .award-logo img.apple{width:38px;height:38px}
+  .award-wordmark{font-size:19px;font-weight:700;color:#111;letter-spacing:0}
   .award-copy{min-width:0;line-height:1.35}
   .award-copy b{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:600}
   .award-copy p{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
@@ -585,9 +586,9 @@ function buildCover(){
 }
 
 const AWARDS = [
+  {year:"2026",brand:"Anker",logo:"",title:"首届黑客松挑战赛 决赛入围 · 队长"},
   {year:"2023",brand:"Apple",logo:"apple.png",title:"移动应用创新赛 总决赛二等奖"},
   {year:"2022",brand:"百度",logo:"baidu.png",title:"人工智能创意赛 总决赛二等奖"},
-  {year:"2022",brand:"Apple",logo:"apple.png",title:"移动应用创新赛 总决赛三等奖"},
   {year:"2022",brand:"腾讯",logo:"tencent.png",title:"高校游戏创意制作大赛 总决赛优胜奖"},
   {year:"2022",brand:"歌尔",logo:"goertek.png",title:"「歌尔杯」高校 AR/VR 挑战赛 总决赛二等奖"},
   {year:"2021",brand:"腾讯",logo:"tencent.png",title:"高校游戏创意制作大赛 总决赛优胜奖"}
@@ -603,7 +604,7 @@ function buildAbout(){
   const caps = ["需求调研","AI 场景定义","测试集设计","AI 策略设计","交互设计","用户教育","功能效果验收","Badcase 分析","数据分析","智能硬件","数据与体验迭代"]
     .map((c,i)=>`<span class="chip${i<3?' hot':''}">${c}</span>`).join("");
   const awards = AWARDS.map(a=>`<article class="award-item">
-    <div class="award-logo"><img class="${a.brand==="Apple"?"apple":""}" src="${A}brands/${a.logo}" alt="${a.brand} logo"></div>
+    <div class="award-logo">${a.logo?`<img class="${a.brand==="Apple"?"apple":""}" src="${A}brands/${a.logo}" alt="${a.brand} logo">`:`<span class="award-wordmark">${a.brand}</span>`}</div>
     <div class="award-copy"><b>${a.year}</b><p>${a.brand==="歌尔"?"":a.brand+" "}${a.title}</p></div>
   </article>`).join("");
   return `<div class="wrap">
