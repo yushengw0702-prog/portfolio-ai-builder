@@ -160,6 +160,7 @@
   .p-title{font-size:clamp(23px,3vw,36px);line-height:1.1;letter-spacing:-.015em;font-weight:640;margin:12px 0 6px}
   .p-sub{font-size:15px;color:var(--accent-ink);font-weight:500;margin-bottom:14px}
   .p-intro{font-size:clamp(14px,1.35vw,16px);color:var(--ink-soft);max-width:70ch}
+  .p-site-link{display:inline-flex;margin-top:12px;color:var(--accent-ink);font-size:13px;text-decoration:underline;text-underline-offset:3px}
   .p-method{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
   .p-method span{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:4px 10px;background:var(--card)}
 
@@ -342,7 +343,26 @@ const DECK = [
   { type:"cover" },
   { type:"about" },
 
-  { type:"project", kind:"重点项目 · AI Builder", index:"01",
+  { type:"project", kind:"重点项目 · 安克黑客松", index:"01",
+    title:"Anker 黑客松 · Homepluse",
+    sub:"首届黑客松挑战赛 / 决赛入围 · 队长 / 场景洞察与产品定义",
+    intro:"作为队长参与 Anker 首届黑客松挑战赛决赛入围作品。针对用户人在外时被摄像头通知频繁打断、却仍要自己判断家中情况的问题，提出 Home Pulse：把大量安防事件汇总为持续可读的家庭状态，通过家庭记忆、状态面板与注意力路由，只在真正值得介入时提醒。",
+    method:["赛题与用户痛点洞察","家庭状态模型","家庭记忆与持续关注","证据与不确定性表达","注意力分级与提醒策略"],
+    siteLink:"https://yushengw0702-prog.github.io/home-pulse-vision-demo/site/",
+    groups:[
+      {name:"问题洞察与产品总览",desc:"从通知疲劳出发，将安防产品的核心单位从离散事件重新定义为用户关心的家庭状态。",images:[
+        {type:"img",src:A+"homepulse/home-pulse-overview.jpg",cap:"Home Pulse · 产品总览与产品主张"},
+        {type:"img",src:A+"homepulse/user-pain-evidence.jpg",cap:"用户痛点 · 通知过多与判断负担"}
+      ]},
+      {name:"状态理解与交互原型",desc:"家庭记忆沉淀用户关注事项，状态面板汇总真实证据，注意力路由再决定何时、以何种强度表达。",images:[
+        {type:"img",src:A+"homepulse/system-concept.jpg",cap:"系统方案 · 家庭记忆 / 状态面板 / 注意力路由"},
+        {type:"img",src:A+"homepulse/state-setup.jpg",cap:"关键流程 · 从自然语言关注到持续监控"},
+        {type:"img",src:A+"homepulse/hardware-desk.jpg",cap:"Home Pulse · 硬件与家庭场景概念"},
+        {type:"img",src:A+"homepulse/live-demo.webp",cap:"交互演示 · Home Pulse 网站素材"}
+      ]}
+    ]},
+
+  { type:"project", kind:"重点项目 · AI Builder", index:"02",
     title:"编程猫 · AI Agent + NFC 儿童创造力硬件",
     sub:"场景定义 / AI Agent · NFC 软硬联动 / 功能原型",
     intro:"在点猫科技（编程猫）创新业务中，探索面向儿童创造力的 AI 产品：孩子「拍一拍 / 画一画」，AI Agent 将内容识别并生成可交互小游戏，再结合 NFC 实体卡片连接数字内容与实体触点。项目重点是把用户场景转化为可测试的 AI 功能原型。",
@@ -363,7 +383,7 @@ const DECK = [
       {type:"img", src:A+"programmingcat/process-still.jpg", cap:"儿童使用过程"}
     ]},
 
-  { type:"project", kind:"重点项目 · 智能可穿戴", index:"02",
+  { type:"project", kind:"重点项目 · 智能可穿戴", index:"03",
     title:"BLISSHABIT · BFRBs 行为干预可穿戴",
     sub:"需求洞察 / 智能硬件原型 / 体验迭代",
     intro:"面向拔毛癖、抠皮等身体聚焦重复行为（BFRBs）的智能可穿戴配饰。完整走通「用户调研 → 行为洞察 → 硬件原型 → 可用性迭代测试」闭环；关键设计判断是把医疗设备做成时尚配饰、弱化医疗感，用情绪价值与差异化人群切入。",
@@ -377,7 +397,7 @@ const DECK = [
       {type:"img", src:A+"wearable1/board-6.jpg", cap:"最终概念"}
     ]},
 
-  { type:"project", kind:"核心项目 · 智能硬件", index:"03",
+  { type:"project", kind:"核心项目 · 智能硬件", index:"04",
     title:"虚之实 · 脑机 + VR 青少年心理干预",
     sub:"非侵入式脑机 + AI 策略 / 场景洞察 / 产品定义",
     intro:"面向青少年心理干预场景，结合非侵入式脑机信号、AI 策略与 VR 训练体验，梳理学生端和家长端的使用场景与需求，参与产品定义、功能规划与双端交互设计。重点关注评估、训练和反馈链路的可理解性与体验闭环。",
@@ -400,7 +420,7 @@ const DECK = [
       ]}
     ]},
 
-  { type:"project", kind:"核心项目 · 智能可穿戴", index:"04",
+  { type:"project", kind:"核心项目 · 智能可穿戴", index:"05",
     title:"Echo Guard · 高速运动感知增强背带",
     sub:"骑行安全 / ICF 模型 · 事故数据驱动",
     intro:"面向高速骑行盲区的安全感知可穿戴。用 ICF 模型拆解骑行者的感知与行动链路，结合事故数据定义场景，通过体感反馈增强对后方来车与盲区的感知。以原型测试检验提醒时机与反馈方式。",
@@ -413,7 +433,7 @@ const DECK = [
       {type:"img", src:A+"wearable2/board-6.jpg", cap:"佩戴形态"}
     ]},
 
-  { type:"project", kind:"整合展示 · 全国获奖", index:"05",
+  { type:"project", kind:"整合展示 · 全国获奖", index:"06",
     title:"AR / VR / MR 教育与文创（整合）",
     sub:"产品负责人 / 苹果 · 腾讯 全国奖项",
     intro:"大学期间以产品负责人身份参与的一组 AR/VR/MR 交互项目，多次获苹果移动应用创新赛、腾讯高校游戏创意大赛全国奖。以下为代表作，均可点击跳转高清视频演示。",
@@ -454,7 +474,7 @@ const DECK = [
       ]}
     ]},
 
-  { type:"project", kind:"整合展示 · 交互装置", index:"06",
+  { type:"project", kind:"整合展示 · 交互装置", index:"07",
     title:"交互装置（整合）",
     sub:"公共空间 / 输入方式 / 光影反馈",
     intro:"围绕公共空间中的互动行为与共同注意力，梳理参与者的场景和输入方式，设计可感知的光影反馈，并通过现场体验观察装置如何引导人与环境互动。",
@@ -543,6 +563,7 @@ function buildProject(s){
         <div class="p-sub">${s.sub}</div>
         <p class="p-intro">${s.intro}</p>
         ${method?`<div class="p-method">${method}</div>`:""}
+        ${s.siteLink?`<a class="p-site-link" href="${s.siteLink}" target="_blank" rel="noopener noreferrer">打开 Home Pulse 交互演示 ↗</a>`:""}
       </div>
       <div class="p-index">${s.index}</div>
     </div>
