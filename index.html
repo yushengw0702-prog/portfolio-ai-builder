@@ -357,14 +357,17 @@
 
 <script>
 const A = "assets/";
+const thumbSrc = src => src.startsWith(A) ? A+"thumbs/"+src.slice(A.length)+".webp" : src;
+const THUMB_RATIOS = {"arvr/hero-1.jpg":1.7978,"arvr/hero-2.jpg":1.8147,"arvr/huimeng-1.jpg":1.7745,"arvr/huimeng-2.jpg":1.768,"arvr/huimeng-3.jpg":1.8216,"arvr/huiying-1.jpg":1.0245,"arvr/huiying-2.jpg":1.8045,"arvr/huiying-3.jpg":1.4159,"arvr/xuanchi-1.jpg":1.0256,"arvr/xuanchi-2.jpg":0.7069,"arvr/xuanchi-3.jpg":1.4656,"arvr/xunyin-1.jpg":1.0245,"arvr/xunyin-2.jpg":1.7778,"arvr/xunyin-3.jpg":1.7778,"arvr/xunzi-1.jpg":1.0245,"arvr/xunzi-2.jpg":2.1918,"arvr/xunzi-3.jpg":1.8569,"arvr/yiyun-1.jpg":1.0245,"arvr/yiyun-2.jpg":0.7069,"arvr/yiyun-3.jpg":0.462,"awards/apple.jpg":1.7647,"awards/certs-wall.jpg":1.7647,"awards/tencent.jpg":1.7615,"bci/photo-1.jpg":1.3352,"bci/photo-2.jpg":1.3352,"bci/scene-1.jpg":0.75,"bci/scene-2.jpg":0.75,"bci/scene-3.jpg":1.3333,"bci/ui-1.jpg":1.7745,"bci/ui-2.jpg":1.7745,"bci/ui-3.jpg":1.7745,"bci/ui-4.jpg":1.7745,"bci/ui-5.jpg":1.7745,"bci/ui-6.jpg":1.7745,"echo-guard-slides/slide-01.png":1.7778,"echo-guard-slides/slide-02.png":1.7778,"echo-guard-slides/slide-03.png":1.7778,"echo-guard-slides/slide-04.png":1.7778,"echo-guard-slides/slide-05.png":1.7778,"echo-guard-slides/slide-06.png":1.7778,"echo-guard-slides/slide-07.png":1.7778,"echo-guard-slides/slide-08.png":1.7778,"echo-guard-slides/slide-09.png":1.7778,"homepulse/assurance-part-2.jpg":1.7778,"homepulse/attention-routing-part-3.jpg":1.7778,"homepulse/hardware-desk.jpg":0.8,"homepulse/home-display-prototype-01.jpg":0.75,"homepulse/home-display-prototype-02.jpg":1.3315,"homepulse/home-pulse-overview.jpg":1.7778,"homepulse/homepulse-animation-poster.jpg":1.4861,"homepulse/homepulse-interaction-poster.jpg":1.6,"homepulse/state-setup.jpg":1.7778,"homepulse/system-concept.jpg":1.7778,"homepulse/user-pain-evidence.jpg":2.406,"interactive/harmonious-1.jpg":1.0235,"interactive/harmonious-2.jpg":2.8319,"interactive/harmonious-3.jpg":1.4159,"interactive/luminous-01.jpg":0.75,"interactive/luminous-02.jpg":1.5,"interactive/luminous-03.jpg":1.5,"interactive/luminous-04.jpg":0.75,"interactive/luminous-05.jpg":0.75,"interactive/moheng-1.jpg":1.3333,"interactive/moheng-2.jpg":1.5,"interactive/moheng-3.jpg":1.5,"programmingcat/card-1.jpg":0.75,"programmingcat/card-2.jpg":0.75,"programmingcat/card-3.jpg":0.75,"programmingcat/process-still.jpg":1.3333,"programmingcat/show-1.jpg":1.3333,"programmingcat/show-2.jpg":0.75,"programmingcat/ui-1.jpg":1.7745,"programmingcat/ui-2.jpg":1.7811,"programmingcat/ui-3.jpg":1.7944,"programmingcat/ui-4.jpg":1.8079,"wearable1/board-1.jpg":2.8319,"wearable1/board-2.jpg":2.8319,"wearable1/board-3.jpg":2.8319,"wearable1/board-4.jpg":2.8319,"wearable1/board-5.jpg":2.8319,"wearable1/board-6.jpg":2.8319,"wearable2/board-1.jpg":2.8319,"wearable2/board-2.jpg":2.8319,"wearable2/board-3.jpg":2.8319,"wearable2/board-4.jpg":2.8319,"wearable2/board-6.jpg":2.8319};
+const thumbRatio = src => THUMB_RATIOS[src.slice(A.length)] || 4/3;
 const COVER_IMAGES = [
-  {src:A+"intro/portrait.jpg", alt:"王予晟"},
-  {src:A+"intro/carousel-01.jpg", alt:"首页轮播图片 01"},
-  {src:A+"intro/carousel-02.jpg", alt:"首页轮播图片 02"},
-  {src:A+"intro/carousel-03.jpg", alt:"首页轮播图片 03"},
-  {src:A+"intro/carousel-04.jpg", alt:"首页轮播图片 04"},
-  {src:A+"intro/carousel-05.jpg", alt:"首页轮播图片 05"},
-  {src:A+"intro/carousel-06.jpg", alt:"首页轮播图片 06"}
+  {src:A+"intro/portrait.webp", alt:"王予晟"},
+  {src:A+"intro/carousel-01.webp", alt:"首页轮播图片 01"},
+  {src:A+"intro/carousel-02.webp", alt:"首页轮播图片 02"},
+  {src:A+"intro/carousel-03.webp", alt:"首页轮播图片 03"},
+  {src:A+"intro/carousel-04.webp", alt:"首页轮播图片 04"},
+  {src:A+"intro/carousel-05.webp", alt:"首页轮播图片 05"},
+  {src:A+"intro/carousel-06.webp", alt:"首页轮播图片 06"}
 ];
 /* ---------------- DECK DATA ---------------- */
 const DECK = [
@@ -556,16 +559,16 @@ function thumbHTML(m, gi, mi){
   if(m.type==="video-local" || m.type==="video-embed"){
     const prov = m.provider ? `<span class="prov">${m.provider}</span>` : "";
     const preview = m.autoplayPreview
-      ? `<video class="preview-video autoplay-preview" src="${m.src}" poster="${m.poster}" muted loop playsinline preload="none" aria-label="${m.label} 自动播放预览"></video>`
-      : `<img src="${m.poster}" loading="lazy" alt="">`;
+      ? `<video class="preview-video autoplay-preview" src="${m.src}" poster="${thumbSrc(m.poster)}" muted loop playsinline preload="none" aria-label="${m.label} 自动播放预览"></video>`
+      : `<img src="${thumbSrc(m.poster)}" loading="lazy" decoding="async" alt="">`;
     const label = m.autoplayPreview ? "自动播放预览 · 点击查看完整视频" : (m.label||"播放视频");
     return `<div class="thumb vid" data-g="${gi}" data-m="${mi}">
       ${preview}${prov}
       <div class="play"><div class="ring"></div><div class="vlab">${label}</div></div>
     </div>`;
   }
-  return `<div class="thumb" data-g="${gi}" data-m="${mi}">
-      <img src="${m.src}" loading="lazy" alt="">
+  return `<div class="thumb" style="aspect-ratio:${thumbRatio(m.src)}" data-g="${gi}" data-m="${mi}">
+      <img src="${thumbSrc(m.src)}" loading="lazy" decoding="async" alt="">
       <div class="cap">${m.cap||""}</div>
     </div>`;
 }
@@ -637,7 +640,7 @@ function buildCover(){
     </div>
     <div class="cover-r">
       <div class="cover-carousel">
-        <img src="${COVER_IMAGES[0].src}" alt="${COVER_IMAGES[0].alt}" data-cover-img>
+        <img src="${COVER_IMAGES[0].src}" alt="${COVER_IMAGES[0].alt}" fetchpriority="high" decoding="async" data-cover-img>
         <button class="cover-hit prev" data-cover-step="-1" aria-label="上一张封面图"></button>
         <button class="cover-hit next" data-cover-step="1" aria-label="下一张封面图"></button>
         <button class="cover-arrow prev" data-cover-step="-1" aria-label="上一张封面图">‹</button>
@@ -710,12 +713,19 @@ DECK.forEach((s,i)=>{
   const el = document.createElement("section");
   el.className="slide";
   el.dataset.i=i;
-  if(s.type==="cover") el.innerHTML=buildCover();
-  else if(s.type==="contact") el.innerHTML=buildContact();
-  else el.innerHTML=buildProject(s);
   stage.appendChild(el);
   slides.push(el);
 });
+
+function renderSlide(i){
+  const el=slides[i];
+  if(el.dataset.rendered) return;
+  const s=DECK[i];
+  if(s.type==="cover") el.innerHTML=buildCover();
+  else if(s.type==="contact") el.innerHTML=buildContact();
+  else el.innerHTML=buildProject(s);
+  el.dataset.rendered="true";
+}
 
 /* ---------------- NAV ---------------- */
 let cur=0;
@@ -738,6 +748,8 @@ function setCover(i){
     img.alt=m.alt;
   });
   document.querySelectorAll(".cover-dot").forEach((d,k)=>d.classList.toggle("active",k===coverIndex));
+  const next=new Image();
+  next.src=COVER_IMAGES[(coverIndex+1)%COVER_IMAGES.length].src;
 }
 function stepCover(d){ setCover(coverIndex+d); }
 
@@ -748,6 +760,7 @@ function go(i){
   i=Math.max(0,Math.min(total-1,i));
   wheelWaitForRelease=false;
   slides[cur].classList.remove("active");
+  renderSlide(i);
   cur=i;
   slides[cur].classList.add("active");
   slides[cur].scrollTop=0;
@@ -759,11 +772,16 @@ function go(i){
   document.getElementById("nextNow").textContent = i<total-1 ? titleOf(DECK[i+1]).slice(0,14) : "";
   try{ history.replaceState(null,"","#s="+i); }catch(e){}
 }
-function syncPreviewVideos(){
-  document.querySelectorAll("video.autoplay-preview").forEach(video=>{
-    if(video.closest(".slide")===slides[cur]) video.play().catch(()=>{});
+const previewObserver=new IntersectionObserver(entries=>{
+  entries.forEach(({target:video,isIntersecting})=>{
+    if(isIntersecting && video.closest(".slide")===slides[cur] && !document.getElementById("lb").classList.contains("open")) video.play().catch(()=>{});
     else video.pause();
   });
+},{rootMargin:"120px"});
+function syncPreviewVideos(){
+  previewObserver.disconnect();
+  document.querySelectorAll("video.autoplay-preview").forEach(video=>video.pause());
+  slides[cur].querySelectorAll("video.autoplay-preview").forEach(video=>previewObserver.observe(video));
 }
 prevBtn.onclick=()=>go(cur-1);
 nextBtn.onclick=()=>go(cur+1);
